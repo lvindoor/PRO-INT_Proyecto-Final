@@ -24,8 +24,8 @@ return new class extends Migration
             $table->string('name',150);
             $table->string('slug',150);
             $table->string('image',250);
-            $table->boolean('color');
-            $table->boolean('size');
+            $table->boolean('color')->default(false);
+            $table->boolean('size')->default(false);;
 
             $table->timestamps();
         });

@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\Product;
 
 return new class extends Migration
 {
@@ -30,7 +31,8 @@ return new class extends Migration
             $table->string('slug',150);
             $table->text('description');
             $table->float('price');
-            $table->unsignedInteger('quantity');
+            $table->unsignedInteger('quantity')->nullable();
+            $table->enum('status', [Product::DRAFT , Product::PUBLICATED])->default(Product::DRAFT);
 
             $table->timestamps();
         });

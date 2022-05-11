@@ -9,6 +9,9 @@ class Product extends Model
 {
     use HasFactory;
 
+    const DRAFT      = 1;
+    const PUBLICATED = 2;
+
     protected $guarded = ['id', 'created_at', 'updated_at'];
 
     /* Eloquent */
