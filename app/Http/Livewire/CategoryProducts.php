@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Product;
 use Livewire\Component;
 
 class CategoryProducts extends Component
@@ -11,9 +12,13 @@ class CategoryProducts extends Component
     public $products = [];
 
     public function loadPosts(){
-        $this->products = $this->category->products;
 
-        $this->emit('glider');
+        /* Obtiene productos publicados */
+        $this->products = $this->category->products()
+                ->where('status', Product::PUBLICATED)->take(15)->get();
+
+        /* Etiqueta para slider */
+        $this->emit('glider', $this->category->id);
     }
 
     public function render()

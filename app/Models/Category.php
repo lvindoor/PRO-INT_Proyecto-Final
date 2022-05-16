@@ -25,4 +25,10 @@ class Category extends Model
         return $this->belongsToMany(Brand::class);
     }
 
+    /* URLs Amigables [slug] */
+
+    public function getRouteKeyName() {
+        return 'slug';
+    }
+
 }

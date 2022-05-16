@@ -1,9 +1,9 @@
-<header class="bg-blue-900 sticky top-0" x-data="dropdown()">
+<header class="bg-blue-900 sticky top-0 z-50" x-data="dropdown()">
     <!--Contenedor de menu-->
     <div class="container flex items-center h-16 justify-between md:justify-start">
         <a href="/" class="mx-6">
-            <x-jet-application-mark />
             <!--SpeedyLogo-->
+            <x-jet-application-mark />
         </a>
 
         <!--Revisar como cambiar el color del texto-->
@@ -97,7 +97,7 @@
                 <ul class="bg-white">
                     @foreach ($categories as $category)
                         <li class="navigation-link text-gray-500 hover:bg-yellow-500 hover:text-white">
-                            <a href="" class="py-2 px-4 text-sm flex items-center">
+                            <a href="{{route('categories.show', $category)}}" class="py-2 px-4 text-sm flex items-center">
                                 <span class="flex justify-center w-9">
                                     {!! $category->icon !!}
                                 </span>
@@ -127,7 +127,7 @@
             <ul>
                 @foreach ($categories as $category)
                     <li class="text-gray-500 hover:bg-yellow-500 hover:text-white">
-                        <a href="" class="py-2 px-4 text-sm flex items-center">
+                        <a href="{{route('categories.show', $category)}}" class="py-2 px-4 text-sm flex items-center">
                             <span class="flex justify-center w-9">
                                 {!! $category->icon !!}
                             </span>
