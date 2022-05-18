@@ -1425,7 +1425,7 @@
                     "email": "taylor@laravel.com"
                 }
             ],
-            "description": "Tailwind scaffolding for the Laravel framework.",
+            "description": " scaffolding for the Laravel framework.",
             "keywords": [
                 "auth",
                 "laravel",

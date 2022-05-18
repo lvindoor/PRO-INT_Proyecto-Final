@@ -7,7 +7,7 @@
                     <h1 class="text-lg uppercase font-semibold text-gray-700">
                         {{ $category->name }}
                     </h1>
-                    <a href="{{route('categories.show', $category)}}" class="text-blue-900 hover:text-blue-700 hover:underline ml-2 font-semibold">Ver más</a>
+                    <a href="{{route('categories.show', $category)}}" class="text-gray-700 text-sm hover:text-gray-400 hover:underline ml-2 font-semibold">Ver más</a>
                 </div>
                 @livewire('category-products', ['category' => $categories->first()])
             </section>
