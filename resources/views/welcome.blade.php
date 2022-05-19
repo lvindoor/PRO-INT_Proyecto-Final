@@ -17,52 +17,18 @@
     @push('script')
 
         <script>
-            Livewire.on('glider', function(id) {
-                new Glider(document.querySelector('.glider-' + id), {
-                    slidesToScroll: 1,
-                    slidesToShow: 1,
-                    draggable: true,
-                    dots: '.glider-' + id + '~ .dots',
-                    arrows: {
-                        prev: '.glider-' + id + '~ .glider-prev',
-                        next: '.glider-' + id + '~ .glider-next'
-                    },
-                    responsive: [
-                        {
-                            breakpoint: 640,
-                            settings: {
-                                slidesToScroll: 2.5,
-                                slidesToShow: 2,
-                            }
-                        },
-
-                        {
-                            breakpoint: 768,
-                            settings: {
-                                slidesToScroll: 3.5,
-                                slidesToShow: 3,
-                            }
-                        },
-
-                        {
-                            breakpoint: 1024,
-                            settings: {
-                                slidesToScroll: 4.5,
-                                slidesToShow: 4,
-                            }
-                        },
-
-                        {
-                            breakpoint: 1280,
-                            settings: {
-                                slidesToScroll: 5.5,
-                                slidesToShow: 5,
-                            }
-                        }
-                    ]
+            Livewire.on('slider', function() {
+                $(document).ready(function() {
+                    $('.flexslider').flexslider({
+                        animation: "slide",
+                        animationLoop: true,
+                        itemWidth: 210,
+                        itemMargin: 20,
+                        minItems: 1,
+                        maxItems: 4
+                    });
                 });
             });
-
         </script>
 
     @endpush

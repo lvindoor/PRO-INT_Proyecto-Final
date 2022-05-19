@@ -33,7 +33,13 @@ class Product extends Model
     }
 
     public function colors() { // N:M
-        return $this->belongsToMany(Color::class);
+        return $this->belongsToMany(Color::class)->withPivot('quantity');
+    }
+
+    /* URLs Amigables [slug] */
+
+    public function getRouteKeyName() {
+        return 'slug';
     }
 
 }

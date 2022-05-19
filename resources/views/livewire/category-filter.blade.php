@@ -62,7 +62,9 @@
                         <li class="bg-white rounded-lg shadow">
                             <article>
                                 <!--Sin imagenes-->
-                                <p>{{$product->name}}</p>
+                                <figure>
+                                    <img class="h-48 w-full object-cover object-center" src="{{ asset('images/product-test.jpg') }}" alt="">
+                                </figure>
 
                                 <!--Con imagenes-->
                                 {{-- <figure>
@@ -71,7 +73,7 @@
 
                                 <div class="py-4 px-6">
                                     <h1 class="text-lg font-semibold">
-                                        <a href="">
+                                        <a href="{{ route('products.show', $product) }}">
                                             {{Str::limit($product->name, 20)}}
                                         </a>
                                     </h1>
@@ -92,7 +94,9 @@
                             <article class="flex">
 
                                 <!--Sin imagenes-->
-                                <p>{{$product->name}}</p>
+                                <figure>
+                                    <img class="h-48 w-56 object-cover object-center" src="{{ asset('images/product-test.jpg') }}" alt="">
+                                </figure>
 
                                 <!--Con imagenes-->
                                 {{-- <figure>
@@ -100,7 +104,7 @@
                                 </figure> --}}
 
                                 <div class="flex-1 py-4 px-6 flex-col">
-                                    <div class="flex justify-between">
+                                    <div class="flex justify-between mb-4">
                                         <div>
                                             <h1 class="text-lg font-semibold text-gray-700">{{ $product->name }}</h1>
                                             <p class="font-bold text-gray-700">MXN$ {{ $product->price }}</p>
@@ -121,10 +125,10 @@
 
                                     </div>
 
-                                    <div class="mt-auto mb-6">
-                                        <x-jet-danger-button>
+                                    <div class="mt-10">
+                                        <x-danger-link href="{{ route('products.show', $product) }}">
                                             Más información
-                                        </x-jet-danger-button>
+                                        </x-danger-link>
                                     </div>
                                 </div>
 

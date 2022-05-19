@@ -17,7 +17,11 @@
 
     <div class="col-span-3">
 
-        <img class="h-64 w-full object-cover object-center" src="{{Storage::url($category->image)}}" alt="">
+        <!-- Sin imagenes -->
+        <img class="h-64 w-full object-cover object-center" src="{{ asset('images/category-test.jpg') }}" alt="">
+
+        <!-- Con imagenes -->
+        {{-- <img class="h-64 w-full object-cover object-center" src="{{ Storage::url($category->image) }}" alt=""> --}}
 
     </div>
 </div>

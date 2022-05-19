@@ -11,18 +11,18 @@ class CategoryProducts extends Component
 
     public $products = [];
 
-    public function loadPosts(){
+    public function render()
+    {
+        return view('livewire.category-products');
+    }
+
+    public function loadPosts() {
 
         /* Obtiene productos publicados */
         $this->products = $this->category->products()
                 ->where('status', Product::PUBLICATED)->take(15)->get();
 
-        /* Etiqueta para slider */
-        $this->emit('glider', $this->category->id);
-    }
-
-    public function render()
-    {
-        return view('livewire.category-products');
+        /* Etiqueta para llamar slider */
+        $this->emit('slider');
     }
 }
