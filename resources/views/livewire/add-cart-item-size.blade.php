@@ -1,4 +1,5 @@
 <div x-data> <!-- Inicializa Alpine -->
+
     <div>
         <p class="text-xl text-gray-700">Talla:</p>
 
@@ -25,7 +26,18 @@
         </select>
     </div>
 
-    <div class="flex mt-4">
+    <p class="text-gray-700 my-4">
+        <span class="font-semibold text-lg">Stock Disponible:</span>
+
+        @if ($quantity)
+            {{$quantity}}
+        @else
+            {{$product->stock}} <!-- Accesor -->
+        @endif
+
+    </p>
+
+    <div class="flex">
         <div class="mr-4">
 
             <!-- Condicionales con Alpine -->
@@ -53,7 +65,10 @@
             <x-button
                 x-bind:disabled="!$wire.quantity" {{-- Quantity es igual 0 --}}
                 color='blue'
-                class="w-full">
+                class="w-full"
+                wire:click="addItem"
+                wire:loading.attr="disabled"
+                wire:target="addItem">
                 Agregar al carrito de compras
             </x-button>
         </div>

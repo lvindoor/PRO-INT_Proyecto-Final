@@ -3,11 +3,18 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
+use Gloudemans\Shoppingcart\Facades\Cart;
+use Illuminate\Support\Facades\Storage;
 
 class AddCartItem extends Component
 {
     public $product, $quantity;
     public $qty = 1;
+
+    public $options = [
+        'color_id' => null,
+        'size_id' => null,
+    ];
 
     public function render()
     {
@@ -22,7 +29,31 @@ class AddCartItem extends Component
         $this->qty = $this->qty + 1;
     }
 
+    public function addItem() {
+        Cart::add([
+                'id' => $this->product->id,
+                'name' => $this->product->name,
+                'qty' => $this->qty,
+                'price' => $this->product->price,
+                'weight' => 550,
+                'options' => $this->options
+            ]);
+
+        /* Refresca cantidad */
+        $this->quantity = qty_available($this->product->id);
+        $this->reset('qty');
+
+        /* Refresca el componente carrito */
+        $this->emitTo('dropdown-cart', 'render');
+    }
+
     public function mount() {
-        $this->quantity = $this->product->quantity;
+        $this->quantity = qty_available($this->product->id);
+
+        /* Sin imagenes */
+        $this->options['image'] = asset('images/product-test.jpg');
+
+        /* Con imagenes */
+        //$this->option['image'] = Storage::url($this->product->images->first()->url);
     }
 }

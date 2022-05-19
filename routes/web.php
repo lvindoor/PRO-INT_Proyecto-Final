@@ -31,3 +31,8 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+/* Prueba */
+Route::get('test', function() {
+    \Cart::destroy();
+});
