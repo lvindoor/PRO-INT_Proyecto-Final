@@ -23,16 +23,19 @@ return new class extends Migration
                     ->onDelete('cascade');
 
             $table  ->foreignId('department_id')
+                    ->nullable()
                     ->constrained()
                     ->onUpdate('cascade')
                     ->onDelete('cascade');
 
             $table  ->foreignId('city_id')
+                    ->nullable()
                     ->constrained()
                     ->onUpdate('cascade')
                     ->onDelete('cascade');
 
             $table  ->foreignId('district_id')
+                    ->nullable()
                     ->constrained()
                     ->onUpdate('cascade')
                     ->onDelete('cascade');
@@ -50,7 +53,10 @@ return new class extends Migration
             $table->float('shipping_cost');
             $table->float('total');
             $table->json('content');
-            $table->string('address',250);
+            $table->string('address',250)->nullable();
+            $table->string('references')->nullable();
+            $table->string('contact', 200);
+            $table->string('phone', 15);
 
             $table->timestamps();
         });
