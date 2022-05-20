@@ -6,6 +6,7 @@ use App\Http\Controllers\SearchController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Livewire\ShoppingCart;
+use App\Http\Livewire\CreateOrder;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,8 @@ Route::get('products/{product}', [ProductController::class, 'show'])->name('prod
 
 Route::get('shopping-cart', ShoppingCart::class)->name('shopping-cart');
 
+Route::get('orders/create', [CreateOrder::class])->middleware('auth')->name('orders.create');
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -36,9 +39,4 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
-});
-
-/* Prueba */
-Route::get('test', function() {
-    \Cart::destroy();
 });

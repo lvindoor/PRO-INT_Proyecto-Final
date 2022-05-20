@@ -75,4 +75,14 @@ class User extends Authenticatable
 
         return $this->getPhotoUrl();
     }
+
+    /* Eloquent */
+
+    public function orders() { // 1:N
+        return $this->hasMany(Order::class);
+    }
+
+    public function cards() { // 1:N
+        return $this->hasMany(Card::class);
+    }
 }

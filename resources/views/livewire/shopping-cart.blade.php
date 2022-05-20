@@ -103,7 +103,7 @@
                     </p>
                 </div>
                 <div>
-                    <x-button-link color='blue'>
+                    <x-button-link color='blue' href="{{ route('orders.create') }}">
                         Continuar
                     </x-button-link>
                 </div>

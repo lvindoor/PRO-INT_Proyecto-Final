@@ -9,7 +9,7 @@
                     </h1>
                     <a href="{{route('categories.show', $category)}}" class="text-gray-700 text-sm hover:text-gray-400 hover:underline ml-2 font-semibold">Ver más</a>
                 </div>
-                @livewire('category-products', ['category' => $categories->first()])
+                @livewire('category-products', ['category' => $category])
             </section>
         @endforeach
     </div>
