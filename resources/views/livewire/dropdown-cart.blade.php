@@ -56,7 +56,7 @@
                             <span class="font-bold">Total:</span>
                             MXN {{ Cart::subtotal() }}
                         </p>
-                        <x-button-link color="blue" class="w-full">
+                        <x-button-link href="{{ route('shopping-cart') }}" color="blue" class="w-full">
                             Ir al carrito de compras
                         </x-button-link>
                     </div>
