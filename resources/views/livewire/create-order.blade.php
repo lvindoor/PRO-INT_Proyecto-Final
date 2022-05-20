@@ -45,7 +45,7 @@
                 </label>
 
                 <div class="px-6 pb-6 grid grid-cols-2 gap-6 hidden" :class="{ 'hidden' : shipping_type != 2 }">
-                    {{--Departamentos--}}
+                    <!--Departamentos-->
                     <div>
                         <x-jet-label value="Departamento" />
 
@@ -62,7 +62,7 @@
                         <x-jet-input-error for="department_id" />
                     </div>
 
-                    {{--Ciudades--}}
+                    <!--Ciudades-->
                     <div>
                         <x-jet-label value="Ciudad" />
 
@@ -173,14 +173,26 @@
 
                 <p class="flex justify-between items-center">
                     Envio
-                    <span class="font-semibold">Gratis</span>
+                    <span class="font-semibold">
+                        @if ($shipping_type == 1    /* ¿El tipo de envio es a paqueteria? */
+                            || $shipping_cost == 0) <!-- ¿El costo de envio es 0? -->
+                            Gratis
+                        @else
+                            {{$shipping_cost}} MXN
+                        @endif
+                    </span>
                 </p>
 
                 <hr class="mt-4 mb-3">
 
                 <p class="flex justify-between items-center font-semibold">
                     <span class="text-lg">Total</span>
-                    {{Cart::subtotal()}} MXN
+                    @if ($shipping_type == 1)   <!-- ¿El tipo de envio es a paqueteria? -->
+                        {{Cart::subtotal()}} MXN
+                    @else
+                        {{Cart::subtotal() + $shipping_cost}} MXN
+                    @endif
+
                 </p>
 
             </div>

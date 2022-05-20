@@ -70,7 +70,7 @@ class AddCartItemSize extends Component
         $this->options['size'] = $size->name;
     }
 
-    public function updatedColorId($value) { // updated = clausula para entrar con modelo size_id
+    public function updatedColorId($value) { // updated = clausula para entrar con modelo color_id
 
         /* Trae el stock de la talla y color seleccionado */
 
