@@ -18,7 +18,7 @@ class ColorSizeSeeder extends Seeder
 
         /* Traer 10 stocks de cada color */
 
-        $size = Size::all();
+        $size = Size::with('colors')->get(); // Precargar colores -- Eager Loading
 
         foreach ($size as $size) {
             $size->colors()
