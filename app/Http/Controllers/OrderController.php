@@ -10,7 +10,10 @@ use Illuminate\Support\Facades\Http;
 class OrderController extends Controller
 {
     public function show(Order $order) {
-        return view('orders.show', compact('order'));
+
+        $items = json_decode($order->content); // String a Json
+
+        return view('orders.show', compact('order', 'items'));
     }
 
     public function payment(Order $order) {
