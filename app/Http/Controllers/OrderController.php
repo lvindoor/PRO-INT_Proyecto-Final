@@ -6,10 +6,19 @@ use App\Models\Order;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Http;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class OrderController extends Controller
 {
+    use AuthorizesRequests;
+
+    public function index(){
+        return view('orders.index');
+    }
+
     public function show(Order $order) {
+
+        $this->authorize('author', $order);
 
         $items = json_decode($order->content); // String a Json
 
@@ -18,12 +27,16 @@ class OrderController extends Controller
 
     public function payment(Order $order) {
 
+        $this->authorize('author', $order);
+
         $items = json_decode($order->content); // String a Json
 
         return view('orders.payment', compact('order', 'items'));
     }
 
     public function pay(Order $order, Request $request) { // Valida el pago
+
+        $this->authorize('author', $order);
 
         $payment_id = $request->get('payment_id');
 
