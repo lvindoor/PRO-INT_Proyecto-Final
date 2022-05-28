@@ -23,7 +23,7 @@ public class Walker extends Thread {
 		try {
 			/* Conexion MySQL */
 			Connection connection = DriverManager
-					.getConnection("jdbc:mysql://127.0.0.1:3306/db_speedy-packages?" + "user=root&password=");
+					.getConnection("jdbc:mysql://192.168.100.9:3306/db_speedy-packages?" + "autoReconnect=true&useSSL=false&user=raspberry&password=root");
 			Statement stmt = connection.createStatement();
 
 			while (true) { // comenzamos el hilo
@@ -54,26 +54,26 @@ public class Walker extends Thread {
 
 					/* Buscamos el usuario de la tarjeta */
 					ResultSet rs0 = stmt.executeQuery(
-							"SELECT * FROM cards"
-							+ "INNER JOIN users"
-							+ "ON cards.user_id = users.id"
+							"SELECT * FROM cards "
+							+ "INNER JOIN users "
+							+ "ON cards.user_id = users.id "
 							+ "WHERE number = '" + cardNumber + "'"
 							+ "AND active = " + true + "");
 					
 					/* Obtener consulta */
 					while (rs0.next()) {
 						/* Obtenemos datos del usuario */
-						int id = rs0.getInt("user.id");
-						String name = rs0.getString("user.name");
-						String email = rs0.getString("user.email");
+						int id = rs0.getInt("users.id");
+						String name = rs0.getString("users.name");
+						String email = rs0.getString("users.email");
 						boolean onHold = true;
 
 						/* Busca ordenes en la paqueteria */
 						ResultSet rs1 = stmt.executeQuery(
-								"SELECT * FROM orders"
-								+ "WHERE id_user = " + id
-								+ "AND shipping_type = " + TO_PACKAGE
-								+ "AND status = " + SEND);
+								"SELECT * FROM orders "
+								+ "WHERE user_id = " + id
+								+ " AND shipping_type = " + TO_PACKAGE
+								+ " AND status = " + SEND);
 						
 						/* Obtener consulta */
 						while (rs1.next()) { // obtenemos el primer paquete
@@ -120,8 +120,7 @@ public class Walker extends Thread {
 						}
 						
 						/* Borramos el historial de la maquina */
-						Statement stmt2 = connection.createStatement();
-						stmt2.execute("DELETE FROM history");
+						stmt.execute("DELETE FROM history");
 					}
 				}
 			}

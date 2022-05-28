@@ -2,7 +2,7 @@ import RPi.GPIO as GPIO
 from mfrc522 import SimpleMFRC522
 
 import time
-import psycopg2 as psql
+import pymysql as mysql
 
 reader = SimpleMFRC522()
 
@@ -12,16 +12,16 @@ try:
 	print(text)
 
 	try:
-		connection = psql.connect( user = "postgres", password = "root", host = "localhost", port = "5432", database = "your-package")
+		connection = mysql.connect( user = 'raspberry', password = 'root', host = '192.168.100.9', database = 'db_speedy-packages')
 		cursor = connection.cursor()
-		print("Conexion Postgresql abierta")
+		print("Conexion MySQL abierta")
 		query = "INSERT INTO history (card_number) VALUES ('%i')" % id
 		print(query)
 		cursor.execute(query)
 		connection.commit()
 
 
-	except (Exception, psql.DatabaseError) as error:
+	except (mysql.err.OperationalError, mysql.err.InternalError) as error:
 		GPIO.setmode(GPIO.BOARD)
 		GPIO.setup(13,GPIO.OUT)
 		GPIO.output(13,True)
@@ -34,7 +34,7 @@ try:
 		if(connection):
 			cursor.close()
 			connection.close()
-			print("Conexion Postgresql cerrada")
+			print("Conexion MySQL cerrada")
 finally:
 
 	GPIO.cleanup()
