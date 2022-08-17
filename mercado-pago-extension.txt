@@ -1,0 +1,18 @@
+composer require mercadopago/dx-php
+
+curl -X POST \
+    'https://api.mercadopago.com/users/test_user?access_token=TEST-5116195061404488-052016-2aeed8ef13c20afd01644594cb4a0794-594213149' \
+    -H 'Authorization: Bearer YOUR_ACCESS_TOKEN' \
+    -H 'Content-Type: application/json' \
+    -d '{
+  "site_id": "MLM"
+}'
+
+Usuario vendedor
+{"id":1127502430,"nickname":"TETE737633","password":"qatest4914","site_status":"active","email":"test_user_84122626@testuser.com"}
+
+Usuario comprador
+{"id":1127501541,"nickname":"TETE8459001","password":"qatest1022","site_status":"active","email":"test_user_7469909@testuser.com"}
+
+Tarjeta de prueba
+https://www.mercadopago.com.mx/developers/es/docs/checkout-pro/additional-content/test-cards
